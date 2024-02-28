@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Poln-fuel\\Source\\Repos\\Win-forms\\Game\\Game.csproj": {}
+    "C:\\Users\\Poln-fuel\\source\\repos\\Win-forms\\Game\\Game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Poln-fuel\\Source\\Repos\\Win-forms\\Game\\Game.csproj": {
+    "C:\\Users\\Poln-fuel\\source\\repos\\Win-forms\\Game\\Game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Poln-fuel\\Source\\Repos\\Win-forms\\Game\\Game.csproj",
+        "projectUniqueName": "C:\\Users\\Poln-fuel\\source\\repos\\Win-forms\\Game\\Game.csproj",
         "projectName": "Game",
-        "projectPath": "C:\\Users\\Poln-fuel\\Source\\Repos\\Win-forms\\Game\\Game.csproj",
+        "projectPath": "C:\\Users\\Poln-fuel\\source\\repos\\Win-forms\\Game\\Game.csproj",
         "packagesPath": "C:\\Users\\Poln-fuel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Poln-fuel\\Source\\Repos\\Win-forms\\Game\\obj\\",
+        "outputPath": "C:\\Users\\Poln-fuel\\source\\repos\\Win-forms\\Game\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

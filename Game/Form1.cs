@@ -6,42 +6,33 @@ namespace Game
         {
             InitializeComponent();
         }
-        private void Window_Load(object sender, EventArgs e)
+
+        int[] Mas = new int[10];
+
+        private void RandomButton_Click(object sender, EventArgs e)
         {
-            ResultLabel.Text = string.Empty;
-        }
-        private void RunButton_Click(object sender, EventArgs e)
-        {
-            int StringIndex = WordList.SelectedIndex;
-            string SelectedString = (string)WordList.Items[StringIndex];
-            int StringLength = SelectedString.Length;
-            int Words = 0;
-            int i = 0;
-            char Prev = ' ';
-            char Curr = SelectedString[0];
-            while (i < StringLength)
+            StartListbox.Items.Clear();
+            Random rand = new Random();
+            for (int i = 0; i < Mas.Length; i++)
             {
-                if (Curr != ' ' && Prev == ' ')
-                    Words++;
-                Prev = SelectedString[i];
-                if (i != StringLength - 1)
-                    Curr = SelectedString[i + 1];
-                i++;
-            }
-            ResultLabel.Text = "В этой строке " + Words.ToString();
-            switch (Words)
-            {
-                case 1:
-                    ResultLabel.Text += " слово"; break;
-                case 2:
-                case 3:
-                case 4:
-                    ResultLabel.Text += " слова"; break;
-                default:
-                    ResultLabel.Text += " слов"; break;
+                Mas[i] = rand.Next(-30, 30);
+                StartListbox.Items.Add($"Mas[{i}] = " + Mas[i]);
             }
         }
 
-        
+        private void RunButton_Click(object sender, EventArgs e)
+        {
+            FinalListbox.Items.Clear();
+            //Ищем индекс наименьшего элемента
+            int imin = 0;
+            for (int i = 0; i < Mas.Length; i++)
+                if (Mas[i] < Mas[imin])
+                    imin = i;
+            (Mas[imin], Mas[Mas.Length - 2]) = (Mas[Mas.Length - 2], Mas[imin]);
+            for (int i = 0; i < Mas.Length; i++)
+            {
+                FinalListbox.Items.Add($"Mas[{i}] = " + Mas[i]);
+            }
+        }
     }
 }
