@@ -6,33 +6,34 @@ namespace Game
         {
             InitializeComponent();
         }
-
-        int[] Mas = new int[10];
-
-        private void RandomButton_Click(object sender, EventArgs e)
+        
+        private void Compute_Click(object sender, EventArgs e)
         {
-            StartListbox.Items.Clear();
+            int rows = 3;
+            int cols = 3;
+            int[,] mas = new int[rows, cols];
+            Grid.RowCount = rows;
+            Grid.ColumnCount = cols;
             Random rand = new Random();
-            for (int i = 0; i < Mas.Length; i++)
+            int i, j;
+            for (i = 0; i < rows; i++)
             {
-                Mas[i] = rand.Next(-30, 30);
-                StartListbox.Items.Add($"Mas[{i}] = " + Mas[i]);
+                for (j = 0; j < cols; j++)
+                {
+                    mas[i, j] = rand.Next(-100, 100);
+                    Grid.Rows[i].Cells[j].Value = mas[i, j];
+                }
             }
-        }
+            int s = 0;
+            for (i = 0; i < Grid.ColumnCount; i++)
+                s += mas[1, i];
 
-        private void RunButton_Click(object sender, EventArgs e)
-        {
-            FinalListbox.Items.Clear();
-            //»щем индекс наименьшего элемента
-            int imin = 0;
-            for (int i = 0; i < Mas.Length; i++)
-                if (Mas[i] < Mas[imin])
-                    imin = i;
-            (Mas[imin], Mas[Mas.Length - 2]) = (Mas[Mas.Length - 2], Mas[imin]);
-            for (int i = 0; i < Mas.Length; i++)
-            {
-                FinalListbox.Items.Add($"Mas[{i}] = " + Mas[i]);
-            }
+            int p = 1;
+            for (i = 0; i < Grid.RowCount; i++)
+                p *= mas[i, 0];
+            TextSum.Text = s.ToString();
+            TextMult.Text = p.ToString();
+
         }
     }
 }
