@@ -2,38 +2,60 @@ namespace Game
 {
     public partial class Window : Form
     {
+        private Color linecolor = Color.Black;
+        private Point startPoint;
+        private Point endPoint;
+        private List<Line> lines = new List<Line>();
         public Window()
         {
             InitializeComponent();
+            this.Paint += Window_Paint;
+            this.MouseDown += Window_MouseDown;
+            this.MouseUp += Window_MouseUp;
         }
         
-        private void Compute_Click(object sender, EventArgs e)
+        private void Window_Paint(object sender, PaintEventArgs e)
         {
-            int rows = 3;
-            int cols = 3;
-            int[,] mas = new int[rows, cols];
-            Grid.RowCount = rows;
-            Grid.ColumnCount = cols;
-            Random rand = new Random();
-            int i, j;
-            for (i = 0; i < rows; i++)
+            foreach(var line in lines)
             {
-                for (j = 0; j < cols; j++)
+                using (Pen pen = new Pen(line.Color, 2))
                 {
-                    mas[i, j] = rand.Next(-100, 100);
-                    Grid.Rows[i].Cells[j].Value = mas[i, j];
+                    e.Graphics.DrawLine(pen, line.StartPoint, line.EndPoint);
                 }
             }
-            int s = 0;
-            for (i = 0; i < Grid.ColumnCount; i++)
-                s += mas[1, i];
+            
+        }
 
-            int p = 1;
-            for (i = 0; i < Grid.RowCount; i++)
-                p *= mas[i, 0];
-            TextSum.Text = s.ToString();
-            TextMult.Text = p.ToString();
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            linecolor = colorDialog1.Color;
+            PickedColor.BackColor = linecolor;
+        }
 
+        private void Window_MouseDown(object sender, MouseEventArgs e)
+        {
+            startPoint = e.Location;
+            
+        }
+
+        private void Window_MouseUp(object sender, MouseEventArgs e)
+        {
+            endPoint = e.Location;
+            lines.Add(new Line(startPoint, endPoint, linecolor));
+            this.Invalidate();
+        }
+        private class Line
+        {
+            public Point StartPoint { get; }
+            public Point EndPoint { get; }
+            public Color Color { get; }
+            public Line(Point startPoint, Point endPoint, Color color)
+            {
+                StartPoint = startPoint;
+                EndPoint = endPoint;
+                Color = color;
+            }
         }
     }
 }
