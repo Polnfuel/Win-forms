@@ -6,6 +6,7 @@ namespace Game
         private static double angle;
 
         private static Pen pen = new Pen(Color.Black, 1);
+        private static SolidBrush brush = new SolidBrush(Color.PaleGreen);
         private static PointF[] FirstRect = new PointF[4];
         private static PointF[] SecondRect = new PointF[4];
 
@@ -17,6 +18,8 @@ namespace Game
         private void Window_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            g.FillPolygon(brush, FirstRect);
+            g.FillPolygon(brush, SecondRect);
             g.DrawPolygon(pen, FirstRect);
             g.DrawPolygon(pen, SecondRect);
         }
@@ -42,9 +45,7 @@ namespace Game
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            angle += 0.005f;
-            if (angle > 2 * Math.PI)
-                angle -= 2 * Math.PI;
+            angle += 0.005;
             for (int i = 0; i < FirstRect.Length; i++)
             {
                 Rotate(ref FirstRect[i], angle);
