@@ -47,7 +47,6 @@
             Text = "Game";
             Load += Window_Load;
             Paint += Window_Paint;
-            Resize += Window_Resize;
             ResumeLayout(false);
         }
 
