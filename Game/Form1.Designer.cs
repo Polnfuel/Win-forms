@@ -28,54 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            colorDialog1 = new ColorDialog();
-            ColorButton = new Button();
-            PickedColor = new Label();
+            components = new System.ComponentModel.Container();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // colorDialog1
+            // timer1
             // 
-            colorDialog1.FullOpen = true;
-            // 
-            // ColorButton
-            // 
-            ColorButton.Location = new Point(12, 12);
-            ColorButton.Name = "ColorButton";
-            ColorButton.Size = new Size(123, 29);
-            ColorButton.TabIndex = 0;
-            ColorButton.Text = "Выбрать цвет";
-            ColorButton.UseVisualStyleBackColor = true;
-            ColorButton.Click += ColorButton_Click;
-            // 
-            // PickedColor
-            // 
-            PickedColor.AutoSize = true;
-            PickedColor.Location = new Point(150, 16);
-            PickedColor.Name = "PickedColor";
-            PickedColor.Size = new Size(45, 20);
-            PickedColor.TabIndex = 1;
-            PickedColor.Text = "         ";
+            timer1.Enabled = true;
+            timer1.Interval = 50;
+            timer1.Tick += timer1_Tick;
             // 
             // Window
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(821, 502);
-            Controls.Add(PickedColor);
-            Controls.Add(ColorButton);
             Name = "Window";
             Text = "Game";
+            Load += Window_Load;
             Paint += Window_Paint;
-            MouseDown += Window_MouseDown;
-            MouseUp += Window_MouseUp;
+            Resize += Window_Resize;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        public ColorDialog colorDialog1;
-        private Button ColorButton;
-        private Label PickedColor;
+        private System.Windows.Forms.Timer timer1;
     }
 }
